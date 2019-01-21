@@ -1,12 +1,24 @@
 function highestScore(arr) {
-  const highestByClass = arr.reduce((a, student) => {
-    const { class: className, score } = student;
-    if (!a[className] || a[className].score < score) {
-      a[className] = student;
+    var nilai = {};
+    for(i=0; i < arr.length; i++){
+      var nama = arr[i].name;
+      var skor = arr[i].score;
+      var kelas = arr[i].class;
+  
+      if(nilai[kelas] === undefined){
+        var siswa={};
+        siswa.name = nama;
+        siswa.score = skor;
+        nilai[kelas] = siswa;
+      }
+      else if(nilai[kelas].score < skor){
+        var siswa = {};
+        siswa.name = nama;
+        siswa.score = skor;
+        nilai[kelas] = siswa;
+      }
     }
-    return a;
-  }, {});
-  return Object.values(highestByClass);
+    return nilai;
 }
 
 
